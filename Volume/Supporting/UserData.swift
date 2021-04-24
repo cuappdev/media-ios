@@ -14,6 +14,7 @@ class UserData: ObservableObject {
     private let publicationsKey = "savedPublicationIds"
     private let articleShoutoutsKey = "articleShoutoutsCounter"
     private let isFirstLauncyKey = "isFirstLaunch"
+    private let didClearCacheKey = "didClearCache"
 
     /// This cache maps `Article` and `Publication`  ids to shout outs. Its purpose is to allow the UI to
     /// display incremented shoutouts without refetching the model from the server. Users of the cache should
@@ -102,5 +103,12 @@ class UserData: ObservableObject {
         } else {
             followedPublicationIDs.removeAll(where: { $0 == publication.id })
         }
+    }
+    
+    func clearCache() {
+        shoutoutsCache = [:]
+        savedArticleIDs = []
+        followedPublicationIDs = []
+        articleShoutoutsCounter = [:]
     }
 }
