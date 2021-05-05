@@ -32,6 +32,7 @@ struct MainView: View {
                 Image("volume")
             }
             .tag(Tab.home)
+            
             TabContainer(screen: .publicationList) {
                 PublicationList()
             }

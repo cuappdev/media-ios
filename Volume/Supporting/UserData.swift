@@ -103,4 +103,11 @@ class UserData: ObservableObject {
             followedPublicationIDs.removeAll(where: { $0 == publication.id })
         }
     }
+    
+    func clearCache() {
+        shoutoutsCache = [:]
+        savedArticleIDs = []
+        followedPublicationIDs = []
+        articleShoutoutsCounter = [:]
+    }
 }

@@ -25,9 +25,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
+        let userdata = UserData()
         let contentView = ContentView()
-            .environmentObject(UserData())
+            .environmentObject(userdata)
             .environmentObject(NetworkState())
+        
+        if !UserDefaults.standard.bool(forKey: "didClearCache") {
+            userdata.clearCache()
+            UserDefaults.standard.set(true, forKey: "didClearCache")
+        }
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

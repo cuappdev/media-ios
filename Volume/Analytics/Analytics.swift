@@ -19,6 +19,7 @@ enum VolumeEvent: String {
     case announcementPresented = "announcement_presented"
     case startOnboarding = "start_onboarding"
     case completeOnboarding = "complete_onboarding"
+    case notificationOpened = "notification_opened"
     /// Publication-specific events
     case followPublication = "follow_publication"
     case unfollowPublication = "unfollow_publication"
@@ -64,5 +65,7 @@ enum NavigationSource: String {
     case morePublications = "more_publications"
     case onboarding = "onboarding"
     
-    case unspecified
+    // Other
+    case notification = "notification"
+    case unspecified = "unspecified"
 }
