@@ -30,18 +30,7 @@ struct ArticleInfo: View {
                     .blur(radius: article.isNsfw ? 3 : 0)
                 
                 Spacer()
-                HStack {
-                    // swiftlint:disable:next line_length
-                    Text("\(article.date.fullString) • \(max(article.shoutouts, userData.shoutoutsCache[article.id, default: 0])) shout-outs")
-                        .font(.helveticaRegular(size: 10))
-                        .foregroundColor(Color.volume.lightGray)
-                    if userData.isArticleSaved(article) {
-                        Image(systemName: "bookmark.fill")
-                            .resizable()
-                            .foregroundColor(Color.volume.orange)
-                            .frame(width: 8, height: 11)
-                    }
-                }
+                ArticleMetaData(article: article)
             }
             Spacer()
         }
@@ -78,6 +67,25 @@ extension ArticleInfo {
                     }
                 }
                 Spacer()
+            }
+        }
+    }
+}
+
+struct ArticleMetaData: View {
+    let article: Article
+    
+    var body: some View {
+        HStack {
+            // swiftlint:disable:next line_length
+            Text("\(article.date.fullString) • \(max(article.shoutouts, userData.shoutoutsCache[article.id, default: 0])) shout-outs")
+                .font(.helveticaRegular(size: 10))
+                .foregroundColor(Color.volume.lightGray)
+            if userData.isArticleSaved(article) {
+                Image(systemName: "bookmark.fill")
+                    .resizable()
+                    .foregroundColor(Color.volume.orange)
+                    .frame(width: 8, height: 11)
             }
         }
     }
